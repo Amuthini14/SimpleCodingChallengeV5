@@ -26,6 +26,17 @@ namespace SimpleCodingChallenge.DataAccess.Entity
                 return age;
             }
         }
+
+        // code
+        public string FullName
+        {
+            get
+            {
+                string fullName = FirstName + " " + LastName;
+                return fullName;
+            }
+
+        }
     }
 
     public sealed class EmployeeEntityDescriptor : IEntityTypeConfiguration<Employee>
@@ -45,6 +56,8 @@ namespace SimpleCodingChallenge.DataAccess.Entity
                 .IsUnique();
 
             builder.Ignore(e => e.Age);
+            //code
+            builder.Ignore(e => e.FullName);
         }
     }
 }

@@ -8,5 +8,8 @@
     public class AboutConfiguration
     {
         public string Author { get; set; }
+
+        // code
+        public string FavoriteWebsite { get; set; }
     }
 }

@@ -13,12 +13,24 @@ namespace SimpleCodingChallenge.API.Controllers
     public class EmployeesController : Controller
     {
         private readonly IMediator mediator;
+        
 
+        //original code, q3
+        public EmployeesController(IMediator mediator)
+        {
+           this.mediator = mediator;
+        }
+
+        // my code q3
         public EmployeesController(IMediator mediator)
         {
             this.mediator = mediator;
+           
         }
 
+
+
+        
         [HttpGet]
         [Route("all")]
         public async Task<ActionResult<List<EmployeeDto>>> Index()
@@ -27,9 +39,51 @@ namespace SimpleCodingChallenge.API.Controllers
             return result.EmployeeList;
         }
 
-        public async Task<ActionResult<EmployeeDto>> Create()
+        //q3
+        [HttpPost]
+        [Route("")]
+        //
+        public async Task<ActionResult<EmployeeDto>> Create(EmployeeDto employeeDto) // this "employeeDto" is not passed to any  mehtod in "AddEmployeesCommandHandler"
         {
-            return null;
+            //q3
+            // await mediator.Send(new AddEmployeesCommand());
+            //return employeeDto;
+            //original code :  return null;
+
+            await _mediator.Send(new AddEmployeesCommand(employeeDto));
+            return employeeDto;
+
         }
+
+
+       // [HttpPut("{EmployeeID}")]
+        //[Route("")]
+        //public async Task<ActionResult> Create(string EmployeeID, AddEmployeesCommand command)
+        //{
+          //  if (EmployeeID != command.EmployeeID)
+            //{
+              //  return BadRequest();
+            //}
+            //return Ok(await mediator.Send(command));
+        //}
     }
+
+    [HttpGet("{id}")]
+     [Route("{id}")]
+public async Task<ActionResult<TodoItemDTO>> GetById(string employeeId)
+{
+    var todoItem = await _context.TodoItems.FindAsync(id);
+
+    if (todoItem == null)
+    {
+        return NotFound();
+    }
+
+    return ItemToDTO(todoItem);
+
+        // sir
+
+        var result = await mediator.Send(new GetEmployeeByIdCommand( employeeId));
+            return result.EmployeeList;
+}
 }
