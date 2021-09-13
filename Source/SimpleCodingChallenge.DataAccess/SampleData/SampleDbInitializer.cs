@@ -26,7 +26,8 @@ namespace SimpleCodingChallenge.DataAccess.SampleData
                     BirthDate = DateTimeOffset.Parse("1963-11-19"),
                     Department = "Company",
                     JobTitle = "CEO",
-                    Salary = 450000
+                    Salary = 450000,
+                    Country = "N/A"
                 },
                 new Employee
                 {
@@ -39,7 +40,8 @@ namespace SimpleCodingChallenge.DataAccess.SampleData
                     BirthDate = DateTimeOffset.Parse("1973-01-12"),
                     Department = "Marketing",
                     JobTitle = "Director",
-                    Salary = 250000
+                    Salary = 250000,
+                    Country = "N/A"
                 }
             };
 

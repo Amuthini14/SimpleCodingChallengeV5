@@ -53,6 +53,9 @@ namespace SimpleCodingChallenge.DataAccess.Migrations
 
                     b.Property<double>("Salary")
                         .HasColumnType("float");
+                    
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

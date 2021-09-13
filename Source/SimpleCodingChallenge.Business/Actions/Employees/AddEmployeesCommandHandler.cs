@@ -13,25 +13,16 @@ namespace SimpleCodingChallenge.Business.Actions.Employees
 {
     public class AddEmployeesCommand : IRequest<AddEmployeesCommandResponse>
     {
-      // public EmployeeDto EmployeeList { get; set; }
-        public List<EmployeeDto> EmployeeList { get; set; }
-        public string EmployeeID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string BirthDate { get; set; }
-        public string JobTitle { get; set; }
-        public double Salary { get; set; }
-        public string Department { get; set; }
-        public int Age { get; set; }
-        public string FullName { get; set; }
+        // public EmployeeDto EmployeeList { get; set; }
+        public EmployeeDto employeeDto;
     }
 
     public class AddEmployeesCommandResponse
     {
-        public List<EmployeeDto> EmployeeList { get; set; }
-      // public Employee EmployeeList { get; set; }
+        // public List<EmployeeDto> EmployeeList { get; set; }
+        // public Employee EmployeeList { get; set; }
+
+        public bool check_true;
     }
     public class AddEmployeesCommandHandler : IRequestHandler<AddEmployeesCommand, AddEmployeesCommandResponse>
     {
@@ -48,11 +39,11 @@ namespace SimpleCodingChallenge.Business.Actions.Employees
         {
            
             //
-            await dbContext.AddAsync(request.EmployeeList);
-            return new AddEmployeesCommandResponse
-            {
-                EmployeeList = EmployeeList
-            };
+            await dbContext.AddAsync(request.employeeDto);
+            return new AddEmployeesCommandResponse(
+                {
+                check_true = true;
+            });
         }
     }
 }

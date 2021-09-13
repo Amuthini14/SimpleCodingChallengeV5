@@ -70,20 +70,14 @@ namespace SimpleCodingChallenge.API.Controllers
 
     [HttpGet("{id}")]
      [Route("{id}")]
-public async Task<ActionResult<TodoItemDTO>> GetById(string employeeId)
+public async Task<ActionResult<EmployeeDto>> GetById(string employeeId)
 {
-    var todoItem = await _context.TodoItems.FindAsync(id);
-
-    if (todoItem == null)
-    {
-        return NotFound();
-    }
-
-    return ItemToDTO(todoItem);
-
-        // sir
 
         var result = await mediator.Send(new GetEmployeeByIdCommand( employeeId));
-            return result.EmployeeList;
+        if (result == null)
+        {
+            return NotFound();
+        }
+            return result.;
 }
 }
